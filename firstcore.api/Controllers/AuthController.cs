@@ -48,6 +48,9 @@ namespace firstcore.api.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
+            //throw new Exception("Computer says no!");
+            //try{
+            //throw new Exception("Computer says no!");
             var userFromRepo = await _repo.Login(userForLoginDto.username.ToLower(), userForLoginDto.password);
             if (userFromRepo == null)
                 return Unauthorized();
@@ -75,6 +78,10 @@ namespace firstcore.api.Controllers
             return Ok(new{
                 token = tokenHandler.WriteToken(token)
             });
+            // }
+            // catch(Exception e){
+            //     return StatusCode(500,"computer really says no");
+            // }
 
         }
     }
